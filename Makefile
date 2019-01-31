@@ -1,17 +1,10 @@
 # *makefile voice* hello
 #
 
-CC=vc
-AS=vasm
-LD=vc
-OBJDUMP=vobjdump
+-include config.mak
 
-OPTS = -O2 -short-push
-CFLAGS = +aos68k -c99 $(OPTS)
-LDFLAGS = +aos68k -final
-
-SRCS = $(wildcard src/*.c) $(wildcard src/*.s)
-OBJS = $(subst src/,obj/,$(SRCS:=.o))
+SRCS := $(wildcard src/*.c) $(wildcard src/*.s)
+OBJS := $(subst src/,obj/,$(SRCS:=.o))
 
 all: pumpy
 
@@ -28,5 +21,5 @@ obj/%.s.o: src/%.s
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	@rm -f obj/*.o
+	@rm -rf obj
 
