@@ -16,10 +16,10 @@ obj:
 	@mkdir -p obj
 
 obj/%.c.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I./include -c $< -o $@
 
 obj/%.s.o: src/%.s
-	$(AS) $(ASFLAGS) $< -o $@
+	$(AS) $(ASFLAGS) -I./include $< -o $@
 
 install: all $(INST)
 	@cp pumpy $(INST)
