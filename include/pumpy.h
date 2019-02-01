@@ -5,18 +5,16 @@
 #include <proto/exec.h>
 #include <proto/dos.h>
 
-#ifndef _BASE_GLOBAL
-#define _BASE_GLOBAL extern
+#ifndef _GLOBAL
+#define _GLOBAL extern
 #endif
 
-struct _base_ptrs 
+struct base 
 {
         struct Library *sys;
         struct Library *dos;
 };
 
-long init_base();
-
-_BASE_GLOBAL struct _base_ptrs base;
+_GLOBAL struct base base;
 
 #endif /* _PUMPY_H */

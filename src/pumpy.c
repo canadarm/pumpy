@@ -1,13 +1,18 @@
+#define _GLOBAL 
 #include "pumpy.h"
+#include "ui.h"
+
+/* library has explicit dependencies on these. */
+struct Library * DOSBase;
+struct Library * SYSBase;
 
 __saveds
 int main()
 { 
-        if (!init_base())
-                return (1);
+        base.sys = SYSBase = *((struct Library **)4l); 
+        base.dos = DOSBase = OpenLibrary ("dos.library", 0l); 
+        ui_init (Output ());
 
-        Write(Output(),"Computer\n",9); 
-
-        close_base();
+        CloseLibrary (base.dos);
         return (RETURN_OK);
 }
