@@ -5,11 +5,11 @@
 
 SRCS := $(wildcard src/*.c) $(wildcard src/*.s)
 OBJS := $(subst src/,obj/,$(SRCS:=.o))
-LIBS := amigas
+LIBS := amiga$(S)
 
 all: pumpy
 
-pumpy: obj $(OBJS)
+pumpy: obj $(OBJS) Makefile
 	$(LD) $(LDFLAGS) -o $@ $(OBJS) $(addprefix -l,$(LIBS))
 
 obj:
@@ -30,3 +30,4 @@ $(INST):
 clean:
 	@rm -rf obj
 
+.PHONY: clean install
